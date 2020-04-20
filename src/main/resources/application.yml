@@ -1,0 +1,14 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  profiles:
+    active: production
+  application:
+    name: shop-app
+  h2:
+    console:
+      enabled: true
+server:
+  port: 8086
+
