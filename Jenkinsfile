@@ -15,8 +15,8 @@ pipeline {
         jdk 'jdk8'
     }
     stages {
-        stage {
-            steps ('GroovyInit') {
+        stage ('GroovyInitialize') {
+            steps  {
                 script {
                     gv = load 'scripts.groovy'
                 }
