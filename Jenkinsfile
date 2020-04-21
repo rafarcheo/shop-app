@@ -34,12 +34,21 @@ pipeline {
         }
         stage ('CREDENTIALS') {
             steps {
-                echo "param string: ${params.VERSION_STRING}"
-                echo "param boolean: ${params.VERSION_BOOLEAN}"
-                echo "param choice: ${params.VERSION_CHOICE}"
                 echo '--- credentials section ---'
                 withCredentials([usernamePassword(credentialsId: 'credentials_git1', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     echo "credentials: ${USERNAME} : ${PASSWORD}"
+                }
+            }
+        }
+        stage ('PARAMETERS') {
+            when {
+                expression {
+                   params.VERSION_STRING == true
+                }
+            }
+            steps {
+                script {
+                    gv.parametersApp
                 }
             }
         }
