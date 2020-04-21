@@ -15,9 +15,17 @@ pipeline {
         jdk 'jdk8'
     }
     stages {
+        stage {
+            steps ('GroovyInit') {
+                script {
+                    gv = load 'scripts.groovy'
+                }
+            }
+        }
         stage ('Initialize') {
             steps {
                 echo "DOCKERFILE_VERSION value ${DOCKERFILE_VERSION}"
+                echo gv.buildApp
                 sh '''
                     echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
