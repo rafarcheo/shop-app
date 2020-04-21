@@ -24,8 +24,10 @@ pipeline {
         }
         stage ('Initialize') {
             steps {
+                script {
+                    gv.buildApp()
+                }
                 echo "DOCKERFILE_VERSION value ${DOCKERFILE_VERSION}"
-                gv.buildApp()
                 sh '''
                     echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
