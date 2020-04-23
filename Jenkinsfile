@@ -2,6 +2,9 @@ CODE_CHANGES = true
 pipeline {
     agent any
     environment {
+        registry = "rafarcheo/spring-boot-shop-app"
+        registryCredential = 'docker-hub-credentials'
+        dockerImage = ''
         DOCKERFILE_VERSION = '1.0.0'
         CREDENTIALS_GIT = credentials('gitlab')
     }
@@ -69,6 +72,32 @@ pipeline {
                 echo 'test 123 conditional expression executes !!!'
                 echo "credentials ${CREDENTIALS_GIT}"
 
+            }
+        }
+        stage('Cloning Git') {
+            steps {
+                git 'https://github.com/gustavoapolinario/microservices-node-example-todo-frontend.git'
+            }
+        }
+        stage('Building image') {
+            steps{
+                script {
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                }
+            }
+        }
+        stage('Deploy Image') {
+            steps{
+                script {
+                    docker.withRegistry( '', registryCredential ) {
+                        dockerImage.push()
+                    }
+                }
+            }
+        }
+        stage('Remove Unused docker image') {
+            steps{
+                sh "docker rmi $registry:$BUILD_NUMBER"
             }
         }
     }
