@@ -37,7 +37,7 @@ pipeline {
         stage ('CREDENTIALS') {
             steps {
                 echo '--- credentials section ---'
-                withCredentials([usernamePassword(credentialsId: 'credentials_git1', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                withCredentials([usernamePassword(credentialsId: 'gitlab', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     echo "credentials: ${USERNAME} : ${PASSWORD}"
                 }
             }
