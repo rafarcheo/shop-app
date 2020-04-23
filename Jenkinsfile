@@ -76,7 +76,7 @@ pipeline {
         }
         stage('Cloning Git') {
             steps {
-                git 'https://github.com/rafarcheo/shop-app.git'
+                git credentialsId: 'gitlab', url: 'https://github.com/rafarcheo/shop-app.git'
             }
         }
         stage('Building image') {
