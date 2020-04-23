@@ -76,7 +76,7 @@ pipeline {
         }
         stage('Cloning Git') {
             steps {
-                git 'https://github.com/gustavoapolinario/microservices-node-example-todo-frontend.git'
+                git 'https://github.com/rafarcheo/shop-app.git'
             }
         }
         stage('Building image') {
