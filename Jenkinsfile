@@ -3,7 +3,7 @@ pipeline {
     agent any
     environment {
         DOCKERFILE_VERSION = '1.0.0'
-        CREDENTIALS_GIT = credentials('credentials_git1')
+        CREDENTIALS_GIT = credentials('gitlab')
     }
     parameters {
         string(name: 'VERSION_STRING', defaultValue: 'test_value', description: 'test string parameter')
