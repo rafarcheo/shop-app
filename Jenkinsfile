@@ -74,11 +74,11 @@ pipeline {
 
             }
         }
-        stage('Cloning Git') {
-            steps {
-                git credentialsId: 'gitlab', url: 'https://github.com/rafarcheo/shop-app.git'
-            }
-        }
+//        stage('Cloning Git') {
+//            steps {
+//                git credentialsId: 'gitlab', url: 'https://github.com/rafarcheo/shop-app.git'
+//            }
+//        }
         stage('Building image') {
             steps{
                 script {
