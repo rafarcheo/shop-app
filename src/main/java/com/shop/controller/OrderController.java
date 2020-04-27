@@ -5,6 +5,7 @@ import com.shop.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,7 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrderController {
 
-    static final String ORDER = "order";
+    static final String ORDER = "/order";
 
     private final OrderService orderService;
 
@@ -25,4 +26,11 @@ public class OrderController {
         log.info("[order controller] try display all orders");
         return orderService.list();
     }
+
+    @PutMapping
+    public List<OrderItem> putOrder() {
+        log.info("[order controller] try put new order");
+        return orderService.addNew();
+    }
+
 }
