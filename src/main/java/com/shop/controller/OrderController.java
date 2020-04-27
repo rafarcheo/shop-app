@@ -17,7 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrderController {
 
-    static final String ORDER = "/order";
+    static final String ORDER = "/item";
 
     private final OrderService orderService;
 
